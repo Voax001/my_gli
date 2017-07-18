@@ -276,7 +276,7 @@ namespace detail
 
 		GLI_ASSERT(Format != static_cast<format>(gli::FORMAT_INVALID));
 
-		size_t const MipMapCount = (Header.Flags & detail::DDSD_MIPMAPCOUNT) ? Header.MipMapLevels : 1;
+		size_t const MipMapCount = (Header.Flags & detail::DDSD_MIPMAPCOUNT) || Header.MipMapLevels > 0 ? Header.MipMapLevels : 1;
 		size_t FaceCount = 1;
 		if(Header.CubemapFlags & detail::DDSCAPS2_CUBEMAP)
 			FaceCount = int(glm::bitCount(Header.CubemapFlags & detail::DDSCAPS2_CUBEMAP_ALLFACES));
